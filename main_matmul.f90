@@ -22,9 +22,10 @@ program test
 
   do j=1,n2
     do i=1,n1
-      call random_number(A(i,j,1))
+      A(i,j,1) = dble(i-j+1)*0.1234 - dble(i+j)**2 * 0.6
     enddo
   enddo
+  print *,  A(:,:,1)
 
   do k=2,n3
     A(:,:,k) = A(:,:,1)
