@@ -1,4 +1,8 @@
 program test
+  call run
+end
+
+subroutine run
   implicit none
   double precision, allocatable  :: A(:,:,:)
   double precision, allocatable  :: B(:,:,:)

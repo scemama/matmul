@@ -1,0 +1,95 @@
+# Command: ifort -g -xAVX -O2 main_matmul.f90 
+
+*******************************************************
+                  Processing loop 31
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_matmul.f90
+Source line: 41-41
+Address in the binary: 405c79
+
+*******************************************************
+                     Assembly code
+*******************************************************
+VMOVUPD	0(%R15,%R8,8),%XMM1
+VMOVUPD	0x20(%R15,%R8,8),%XMM5
+VMOVUPD	0x40(%R15,%R8,8),%XMM9
+VMOVUPD	0x60(%R15,%R8,8),%XMM13
+VINSERTF128	$0x1,0x30(%R15,%R8,8),%YMM5,%YMM6
+VINSERTF128	$0x1,0x10(%R15,%R8,8),%YMM1,%YMM2
+VINSERTF128	$0x1,0x50(%R15,%R8,8),%YMM9,%YMM10
+VINSERTF128	$0x1,0x70(%R15,%R8,8),%YMM13,%YMM14
+VMULPD	%YMM2,%YMM0,%YMM3
+VMULPD	%YMM6,%YMM0,%YMM7
+VMULPD	%YMM10,%YMM0,%YMM11
+VMULPD	%YMM14,%YMM0,%YMM15
+VADDPD	0(%RCX,%R8,8),%YMM3,%YMM4
+VADDPD	0x20(%RCX,%R8,8),%YMM7,%YMM8
+VADDPD	0x40(%RCX,%R8,8),%YMM11,%YMM12
+VADDPD	0x60(%RCX,%R8,8),%YMM15,%YMM1
+VMOVUPD	%YMM4,0(%RCX,%R8,8)
+VMOVUPD	%YMM8,0x20(%RCX,%R8,8)
+VMOVUPD	%YMM12,0x40(%RCX,%R8,8)
+VMOVUPD	%YMM1,0x60(%RCX,%R8,8)
+ADD	$0x10,%R8
+CMP	%R9,%R8
+JB	405c79
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 23
+nb uops			: 27
+loop length		: 144
+used xmm registers	: 4
+used ymm registers	: 16
+
+Pattern: PD-XMM,PD-YMM
+nb instructions:
+PD-XMM	4
+PD-YMM	12
+
+nb FP arithmetical operations:
+add-sub	16
+mul	16
+
+Ratio ADD-SUB/MUL (instructions): 1.00
+Bytes loaded: 256
+Bytes stored: 128
+Arith. intensity (FLOP / ld+st bytes): 0.08
+
+Unroll factor: 16
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	5.00	5.00	8.00	8.00	4.00	5.00	
+cycles	5.00	5.00	8.00	8.00	8.00	5.00	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+all	: 80%
+load	: 66%
+store	: 100%
+mul	: 100%
+add_sub	: 100%
+other	: 0%
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 8.00
+FP operations per cycle: 4.00 (GFLOPS at 1 GHz)
+instructions per cycle: 2.88
+bytes loaded per cycle: 32.00 (GB/s at 1 GHz)
+bytes stored per cycle: 16.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 48.00 (GB/s at 1 GHz)
+Cycles if fully vectorized: 8.00
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
