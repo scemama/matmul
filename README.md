@@ -505,8 +505,15 @@ $ ./a.out < input
 
 # Summary
 
-Timing | Command
------- | -------
+The fastest solution is to explicitly write all operations of the 2x2 matrix products,
+use `ifort` and tell it not to try to vectorize.
+Using the fastest `matmul` implementation (`ifort` and giving the array bounds)
+is at the best 25% slower.
+The naive use of `matmul` is roughly 7x slower.
+
+
+  Timing     | Command
+  ---------- | ----------------------------------------------
   0.128921 s | `ifort -xAVX -g -O2 main_no_loops_novector.f90`
   0.128947 s | `ifort -xAVX -g -O3 main_no_loops_novector.f90`
   0.129593 s | `gfortran -mavx -g -O2 main_no_loops.f90`
@@ -530,11 +537,5 @@ Timing | Command
   0.769742 s | `gfortran -g -mavx -O2 main_matmul.f90`
   0.843068 s | `ifort -g -O3 -xAVX main_matmul.f90`
   0.899007 s | `ifort -g -O3 main_loop.f90 `
-
-The fastest solution is to explicitly write all operations of the 2x2 matrix products,
-use `ifort` and tell it not to try to vectorize.
-Using the fastest `matmul` implementation (`ifort` and giving the array bounds)
-is at the best 25% slower.
-The naive use of `matmul` is roughly 7x slower.
 
 
