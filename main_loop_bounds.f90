@@ -9,10 +9,9 @@ subroutine run
   double precision, allocatable  :: C(:,:,:)
   
   integer                        :: n1,n2,n3
-  integer                        :: i,j,k
+  integer                        :: i,j,k,l
   integer*8                      :: t0,t1, count_rate, count_max
 
-  !DIR$ ATTRIBUTES ALIGN : 32 :: A, B, C
   print *,  'Enter n1, n2, n3'
   read(*,*) n1,n2,n3
 
@@ -38,8 +37,16 @@ subroutine run
 
   call system_clock(t0, count_rate, count_max)
   do k=1,n3
-    !DIR$ VECTOR ALIGNED
-    C(:,:,k) = matmul(A(:,:,k),B(:,:,k))
+    do j=1,2
+      do i=1,2
+        C(i,j,k) = 0.d0
+      enddo
+      do l=1,2
+        do i=1,2
+          C(i,j,k) = C(i,j,k) + A(i,l,k)*B(l,j,k)
+        enddo
+      enddo
+    enddo
   enddo
   call system_clock(t1, count_rate, count_max)
   print *,  C(:,:,n3)
