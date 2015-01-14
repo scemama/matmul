@@ -29,6 +29,26 @@ address sizes: 36 bits physical, 48 bits virtual
 power management:
 ```
 
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Analysis of 2x2 matrix products in Fortran](#)
+	- [Matmul](#)
+		- [Gfortran](#)
+		- [Ifort](#)
+		- [Putting explicitly the bounds in the matrix product](#)
+		- [Ifort](#)
+	- [Using naively loops instead of matmul](#)
+		- [Gfortran](#)
+		- [Ifort](#)
+	- [Putting explicitly the bounds in the loops](#)
+		- [Gfortran](#)
+		- [Ifort](#)
+	- [Removing the loops](#)
+		- [Gfortran](#)
+		- [Ifort](#)
+			- [Asking the compiler not the vectorize the loop](#)
+- [Summary](#)
+ 
 
 ## Matmul
 
