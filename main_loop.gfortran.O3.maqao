@@ -4,7 +4,7 @@
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
 Source line: 5-36
-Address in the binary: 402073
+Address in the binary: 402210
 INVALID ANALYSIS (less or more than one block)
 
 *******************************************************
@@ -12,8 +12,8 @@ INVALID ANALYSIS (less or more than one block)
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
-Source line: 42-43
-Address in the binary: 401d00
+Source line: 45-46
+Address in the binary: 401e80
 
 *******************************************************
                      Assembly code
@@ -23,7 +23,7 @@ VADDSD	0(%RDX,%RAX,1),%XMM1,%XMM1
 VMOVSD	%XMM1,0(%RDX,%RAX,1)
 ADD	$0x8,%RAX
 CMP	%RCX,%RAX
-JNE	401d00
+JNE	401e80
 
 *******************************************************
                 General loop properties
@@ -87,8 +87,8 @@ Cycles executing div or sqrt instructions: NA
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
-Source line: 43-43
-Address in the binary: 401c90
+Source line: 46-46
+Address in the binary: 401e10
 
 *******************************************************
                      Assembly code
@@ -96,12 +96,12 @@ Address in the binary: 401c90
 VMOVUPD	0(%RCX,%RAX,1),%XMM1
 ADD	$0x1,%EDX
 VINSERTF128	$0x1,0x10(%RCX,%RAX,1),%YMM1,%YMM1
-VMULPD	%YMM1,%YMM2,%YMM1
+VMULPD	%YMM2,%YMM1,%YMM1
 VADDPD	0(%RSI,%RAX,1),%YMM1,%YMM1
 VMOVAPD	%YMM1,0(%RSI,%RAX,1)
 ADD	$0x20,%RAX
 CMP	%EDX,%R10D
-JA	401c90
+JA	401e10
 
 *******************************************************
                 General loop properties
@@ -166,8 +166,8 @@ Cycles executing div or sqrt instructions: NA
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
-Source line: 5-43
-Address in the binary: 401c10
+Source line: 5-46
+Address in the binary: 401d90
 
 *******************************************************
                      Assembly code
@@ -178,7 +178,7 @@ VADDSD	0x8(%RDI,%RDX,8),%XMM1,%XMM1
 VMOVSD	%XMM1,0x8(%RDI,%RDX,8)
 ADD	$0x1,%RDX
 CMP	%EDX,%ECX
-JA	401c10
+JA	401d90
 
 *******************************************************
                 General loop properties
@@ -238,12 +238,206 @@ Cycles executing div or sqrt instructions: NA
                           End
 *******************************************************
 *******************************************************
+                  Processing loop 10
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 41-42
+Address in the binary: 401ce0
+
+*******************************************************
+                     Assembly code
+*******************************************************
+MOVQ	$0,0(%RCX,%RAX,1)
+ADD	$0x8,%RAX
+CMP	%RDX,%RAX
+JNE	401ce0
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 4
+nb uops			: 4
+loop length		: 17
+used xmm registers	: 0
+used ymm registers	: 0
+
+
+No FP arithmetical operations
+
+Bytes loaded: 0
+Bytes stored: 8
+Arith. intensity (FLOP / ld+st bytes): 0.00
+
+Unroll factor: 1
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.00	1.00	0.50	0.50	1.00	1.00	
+cycles	1.00	1.00	0.50	0.50	1.00	1.00	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+No SSE or AVX instructions
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 1.00
+FP operations per cycle: 0.00 (GFLOPS at 1 GHz)
+instructions per cycle: 4.00
+bytes loaded per cycle: 0.00 (GB/s at 1 GHz)
+bytes stored per cycle: 8.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 8.00 (GB/s at 1 GHz)
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 11
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 5-42
+Address in the binary: 401c90
+
+*******************************************************
+                     Assembly code
+*******************************************************
+MOV	%RAX,%RDX
+ADD	$0x1,%RAX
+SAL	$0x5,%RDX
+CMP	%EAX,%ESI
+VMOVAPD	%YMM3,0(%R8,%RDX,1)
+JA	401c90
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 6
+nb uops			: 6
+loop length		: 21
+used xmm registers	: 0
+used ymm registers	: 1
+
+Pattern: PD-YMM
+nb instructions:
+PD-YMM	1
+
+No FP arithmetical operations
+
+Bytes loaded: 0
+Bytes stored: 32
+Arith. intensity (FLOP / ld+st bytes): 0.00
+
+Unroll factor: 4
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.67	1.67	0.50	0.50	1.00	1.67	
+cycles	1.67	1.67	0.50	0.50	2.00	1.67	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+all	: 100%
+load	= NA (no load SSE or AVX instructions)
+store	: 100%
+mul	= NA (no mul SSE or AVX instructions)
+add_sub	= NA (no add_sub SSE or AVX instructions)
+other	= NA (no other SSE or AVX instructions)
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 2.00
+FP operations per cycle: 0.00 (GFLOPS at 1 GHz)
+instructions per cycle: 3.00
+bytes loaded per cycle: 0.00 (GB/s at 1 GHz)
+bytes stored per cycle: 16.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 16.00 (GB/s at 1 GHz)
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
                   Processing loop 12
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 5-5
+Address in the binary: 401c40
+
+*******************************************************
+                     Assembly code
+*******************************************************
+MOVQ	$0,0x8(%R8,%RDX,8)
+LEA	0x2(%RDX),%ECX
+ADD	$0x1,%RDX
+CMP	%EDX,%ESI
+JA	401c40
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 5
+nb uops			: 5
+loop length		: 20
+used xmm registers	: 0
+used ymm registers	: 0
+
+
+No FP arithmetical operations
+
+Bytes loaded: 0
+Bytes stored: 8
+Arith. intensity (FLOP / ld+st bytes): 0.00
+
+Unroll factor: 1 or NA
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.67	1.33	0.50	0.50	1.00	2.00	
+cycles	1.67	1.33	0.50	0.50	1.00	2.00	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+No SSE or AVX instructions
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 2.00
+FP operations per cycle: 0.00 (GFLOPS at 1 GHz)
+instructions per cycle: 2.50
+bytes loaded per cycle: 0.00 (GB/s at 1 GHz)
+bytes stored per cycle: 4.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 4.00 (GB/s at 1 GHz)
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 15
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
 Source line: 36-36
-Address in the binary: 4018f0
+Address in the binary: 401920
 
 *******************************************************
                      Assembly code
@@ -252,7 +446,7 @@ MOV	0(%RSI,%RAX,8),%RDX
 MOV	%RDX,0(%RDI,%RAX,8)
 ADD	$0x1,%RAX
 CMP	%RAX,%RBX
-JGE	4018f0
+JGE	401920
 
 *******************************************************
                 General loop properties
@@ -300,12 +494,12 @@ Cycles executing div or sqrt instructions: NA
                           End
 *******************************************************
 *******************************************************
-                  Processing loop 13
+                  Processing loop 16
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
 Source line: 36-36
-Address in the binary: 4018c0
+Address in the binary: 4018f0
 
 *******************************************************
                      Assembly code
@@ -316,7 +510,7 @@ VMOVUPD	%XMM0,0(%R8,%RDX,1)
 VEXTRACTF128	$0x1,%YMM0,0x10(%R8,%RDX,1)
 ADD	$0x20,%RDX
 CMP	%RCX,%R9
-JA	4018c0
+JA	4018f0
 
 *******************************************************
                 General loop properties
@@ -374,12 +568,12 @@ Cycles executing div or sqrt instructions: NA
                           End
 *******************************************************
 *******************************************************
-                  Processing loop 14
+                  Processing loop 17
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
 Source line: 36-36
-Address in the binary: 401858
+Address in the binary: 401888
 
 *******************************************************
                      Assembly code
@@ -389,7 +583,7 @@ MOV	%RCX,0(%RDI,%RAX,8)
 ADD	$0x1,%RAX
 LEA	-0x1(%RAX),%RCX
 CMP	%RDX,%RCX
-JB	401858
+JB	401888
 
 *******************************************************
                 General loop properties
@@ -437,12 +631,12 @@ Cycles executing div or sqrt instructions: NA
                           End
 *******************************************************
 *******************************************************
-                  Processing loop 17
+                  Processing loop 20
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
 Source line: 34-34
-Address in the binary: 4015e8
+Address in the binary: 401618
 
 *******************************************************
                      Assembly code
@@ -451,7 +645,7 @@ MOV	0(%R8,%RAX,8),%RSI
 MOV	%RSI,0(%RDI,%RAX,8)
 ADD	$0x1,%RAX
 CMP	%RAX,%RBX
-JGE	4015e8
+JGE	401618
 
 *******************************************************
                 General loop properties
@@ -499,12 +693,12 @@ Cycles executing div or sqrt instructions: NA
                           End
 *******************************************************
 *******************************************************
-                  Processing loop 18
+                  Processing loop 21
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
 Source line: 34-34
-Address in the binary: 4015b0
+Address in the binary: 4015e0
 
 *******************************************************
                      Assembly code
@@ -516,7 +710,7 @@ VMOVUPD	%XMM0,0(%RCX,%RAX,1)
 VEXTRACTF128	$0x1,%YMM0,0x10(%RCX,%RAX,1)
 ADD	$0x20,%RAX
 CMP	%RSI,%R9
-JA	4015b0
+JA	4015e0
 
 *******************************************************
                 General loop properties
@@ -573,12 +767,12 @@ Cycles executing div or sqrt instructions: NA
                           End
 *******************************************************
 *******************************************************
-                  Processing loop 20
+                  Processing loop 23
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
 Source line: 26-28
-Address in the binary: 401380
+Address in the binary: 4013a8
 
 *******************************************************
                      Assembly code
@@ -593,8 +787,8 @@ VMULSD	%XMM6,%XMM0,%XMM0
 VSUBSD	%XMM0,%XMM1,%XMM0
 VMOVSD	%XMM0,0(%RAX,%RDX,1)
 ADD	$0x8,%RDX
-CMP	%R8,%RDX
-JNE	401380
+CMP	%R9,%RDX
+JNE	4013a8
 
 *******************************************************
                 General loop properties
@@ -654,26 +848,31 @@ Cycles executing div or sqrt instructions: NA
                           End
 *******************************************************
 *******************************************************
-                  Processing loop 21
+                  Processing loop 24
 *******************************************************
 Function: run_
 Source file: /home/scemama/SO_matmul/main_loop.f90
 Source line: 28-28
-Address in the binary: 4012dc
+Address in the binary: 401304
 INVALID ANALYSIS (less or more than one block)
 
-Loop ending at source line 36 is unrolled by 4
-Loop ending at source line 36 regroups:
-Loop with MAQAO ID 12 and with source line range 36-36
-Loop with MAQAO ID 13 and with source line range 36-36
-Loop with MAQAO ID 14 and with source line range 36-36
+Loop ending at source line 46 is unrolled by 4
+Loop ending at source line 46 regroups:
+Loop with MAQAO ID 7 and with source line range 45-46
+Loop with MAQAO ID 8 and with source line range 46-46
+Loop with MAQAO ID 9 and with source line range 5-46
+Loop ending at source line 5 is not unrolled or unrolled with no peel/tail code
+Loop ending at source line 42 is unrolled by 4
+Loop ending at source line 42 regroups:
+Loop with MAQAO ID 10 and with source line range 41-42
+Loop with MAQAO ID 11 and with source line range 5-42
+Loop ending at source line 28 is not unrolled or unrolled with no peel/tail code
 Loop ending at source line 34 is unrolled by 4
 Loop ending at source line 34 regroups:
-Loop with MAQAO ID 17 and with source line range 34-34
-Loop with MAQAO ID 18 and with source line range 34-34
-Loop ending at source line 28 is not unrolled or unrolled with no peel/tail code
-Loop ending at source line 43 is unrolled by 4
-Loop ending at source line 43 regroups:
-Loop with MAQAO ID 7 and with source line range 42-43
-Loop with MAQAO ID 8 and with source line range 43-43
-Loop with MAQAO ID 9 and with source line range 5-43
+Loop with MAQAO ID 20 and with source line range 34-34
+Loop with MAQAO ID 21 and with source line range 34-34
+Loop ending at source line 36 is unrolled by 4
+Loop ending at source line 36 regroups:
+Loop with MAQAO ID 15 and with source line range 36-36
+Loop with MAQAO ID 16 and with source line range 36-36
+Loop with MAQAO ID 17 and with source line range 36-36

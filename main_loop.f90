@@ -38,6 +38,9 @@ subroutine run
   call system_clock(t0, count_rate, count_max)
   do k=1,n3
     do j=1,n2
+      do i=1,n1
+        C(i,j,k) = 0.d0
+      enddo
       do l=1,n2
         do i=1,n1
           C(i,j,k) = C(i,j,k) + A(i,l,k)*B(l,j,k)

@@ -12,7 +12,6 @@ subroutine run
   integer                        :: i,j,k
   integer*8                      :: t0,t1, count_rate, count_max
 
-  !DIR$ ATTRIBUTES ALIGN : 32 :: A, B, C
   print *,  'Enter n1, n2, n3'
   read(*,*) n1,n2,n3
 
@@ -38,8 +37,7 @@ subroutine run
 
   call system_clock(t0, count_rate, count_max)
   do k=1,n3
-    !DIR$ VECTOR ALIGNED
-    C(:,:,k) = matmul(A(:,:,k),B(:,:,k))
+    C(1:2,1:2,k) = matmul(A(1:2,1:2,k),B(1:2,1:2,k))
   enddo
   call system_clock(t1, count_rate, count_max)
   print *,  C(:,:,n3)
