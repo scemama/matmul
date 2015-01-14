@@ -1,0 +1,679 @@
+*******************************************************
+                   Processing loop 2
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 5-36
+Address in the binary: 402073
+INVALID ANALYSIS (less or more than one block)
+
+*******************************************************
+                   Processing loop 7
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 42-43
+Address in the binary: 401d00
+
+*******************************************************
+                     Assembly code
+*******************************************************
+VMULSD	0(%RSI,%RAX,1),%XMM0,%XMM1
+VADDSD	0(%RDX,%RAX,1),%XMM1,%XMM1
+VMOVSD	%XMM1,0(%RDX,%RAX,1)
+ADD	$0x8,%RAX
+CMP	%RCX,%RAX
+JNE	401d00
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 6
+nb uops			: 6
+loop length		: 24
+used xmm registers	: 2
+used ymm registers	: 0
+
+Pattern: SD
+nb instructions:
+SD	3
+
+nb FP arithmetical operations:
+add-sub	1
+mul	1
+
+Ratio ADD-SUB/MUL (instructions): 1.00
+Bytes loaded: 16
+Bytes stored: 8
+Arith. intensity (FLOP / ld+st bytes): 0.08
+
+Unroll factor: 1
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.67	1.67	1.50	1.50	1.00	1.67	
+cycles	1.67	1.67	1.50	1.50	1.00	1.67	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+all	: 0%
+load	: 0%
+store	: 0%
+mul	: 0%
+add_sub	: 0%
+other	= NA (no other SSE or AVX instructions)
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 1.67
+FP operations per cycle: 1.20 (GFLOPS at 1 GHz)
+instructions per cycle: 3.60
+bytes loaded per cycle: 9.60 (GB/s at 1 GHz)
+bytes stored per cycle: 4.80 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 14.40 (GB/s at 1 GHz)
+Cycles if fully vectorized: 1.50
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                   Processing loop 8
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 43-43
+Address in the binary: 401c90
+
+*******************************************************
+                     Assembly code
+*******************************************************
+VMOVUPD	0(%RCX,%RAX,1),%XMM1
+ADD	$0x1,%EDX
+VINSERTF128	$0x1,0x10(%RCX,%RAX,1),%YMM1,%YMM1
+VMULPD	%YMM1,%YMM2,%YMM1
+VADDPD	0(%RSI,%RAX,1),%YMM1,%YMM1
+VMOVAPD	%YMM1,0(%RSI,%RAX,1)
+ADD	$0x20,%RAX
+CMP	%EDX,%R10D
+JA	401c90
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 9
+nb uops			: 10
+loop length		: 39
+used xmm registers	: 1
+used ymm registers	: 2
+
+Pattern: PD-XMM,PD-YMM
+nb instructions:
+PD-XMM	1
+PD-YMM	3
+
+nb FP arithmetical operations:
+add-sub	4
+mul	4
+
+Ratio ADD-SUB/MUL (instructions): 1.00
+Bytes loaded: 64
+Bytes stored: 32
+Arith. intensity (FLOP / ld+st bytes): 0.08
+
+Unroll factor: 4
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	2.33	2.33	2.00	2.00	1.00	2.33	
+cycles	2.33	2.33	2.00	2.00	2.00	2.33	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+all	: 80%
+load	: 66%
+store	: 100%
+mul	: 100%
+add_sub	: 100%
+other	: 0%
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 2.33
+FP operations per cycle: 3.43 (GFLOPS at 1 GHz)
+instructions per cycle: 3.86
+bytes loaded per cycle: 27.43 (GB/s at 1 GHz)
+bytes stored per cycle: 13.71 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 41.14 (GB/s at 1 GHz)
+Cycles if fully vectorized: 2.33
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                   Processing loop 9
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 5-43
+Address in the binary: 401c10
+
+*******************************************************
+                     Assembly code
+*******************************************************
+VMULSD	0x8(%R9,%RDX,8),%XMM0,%XMM1
+LEA	0x2(%RDX),%R8D
+VADDSD	0x8(%RDI,%RDX,8),%XMM1,%XMM1
+VMOVSD	%XMM1,0x8(%RDI,%RDX,8)
+ADD	$0x1,%RDX
+CMP	%EDX,%ECX
+JA	401c10
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 7
+nb uops			: 7
+loop length		: 31
+used xmm registers	: 2
+used ymm registers	: 0
+
+Pattern: SD
+nb instructions:
+SD	3
+
+nb FP arithmetical operations:
+add-sub	1
+mul	1
+
+Ratio ADD-SUB/MUL (instructions): 1.00
+Bytes loaded: 16
+Bytes stored: 8
+Arith. intensity (FLOP / ld+st bytes): 0.08
+
+Unroll factor: 1
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	2.33	2.33	1.50	1.50	1.00	2.33	
+cycles	2.33	2.33	1.50	1.50	1.00	2.33	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+all	: 0%
+load	: 0%
+store	: 0%
+mul	: 0%
+add_sub	: 0%
+other	= NA (no other SSE or AVX instructions)
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 2.33
+FP operations per cycle: 0.86 (GFLOPS at 1 GHz)
+instructions per cycle: 3.00
+bytes loaded per cycle: 6.86 (GB/s at 1 GHz)
+bytes stored per cycle: 3.43 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 10.29 (GB/s at 1 GHz)
+Cycles if fully vectorized: 2.17
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 12
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 36-36
+Address in the binary: 4018f0
+
+*******************************************************
+                     Assembly code
+*******************************************************
+MOV	0(%RSI,%RAX,8),%RDX
+MOV	%RDX,0(%RDI,%RAX,8)
+ADD	$0x1,%RAX
+CMP	%RAX,%RBX
+JGE	4018f0
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 5
+nb uops			: 5
+loop length		: 17
+used xmm registers	: 0
+used ymm registers	: 0
+
+
+No FP arithmetical operations
+
+Bytes loaded: 8
+Bytes stored: 8
+Arith. intensity (FLOP / ld+st bytes): 0.00
+
+Unroll factor: 1
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.00	1.00	1.00	1.00	1.00	1.00	
+cycles	1.00	1.00	1.00	1.00	1.00	1.00	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+No SSE or AVX instructions
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 1.00
+FP operations per cycle: 0.00 (GFLOPS at 1 GHz)
+instructions per cycle: 5.00
+bytes loaded per cycle: 8.00 (GB/s at 1 GHz)
+bytes stored per cycle: 8.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 16.00 (GB/s at 1 GHz)
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 13
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 36-36
+Address in the binary: 4018c0
+
+*******************************************************
+                     Assembly code
+*******************************************************
+VMOVAPD	0(%R10,%RDX,1),%YMM0
+ADD	$0x1,%RCX
+VMOVUPD	%XMM0,0(%R8,%RDX,1)
+VEXTRACTF128	$0x1,%YMM0,0x10(%R8,%RDX,1)
+ADD	$0x20,%RDX
+CMP	%RCX,%R9
+JA	4018c0
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 7
+nb uops			: 8
+loop length		: 33
+used xmm registers	: 1
+used ymm registers	: 1
+
+Pattern: PD-YMM,PD-XMM
+nb instructions:
+PD-XMM	1
+PD-YMM	1
+
+No FP arithmetical operations
+
+Bytes loaded: 32
+Bytes stored: 32
+Arith. intensity (FLOP / ld+st bytes): 0.00
+
+Unroll factor: 4
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.33	1.33	1.50	1.50	2.00	1.33	
+cycles	1.33	1.33	1.50	1.50	2.00	1.33	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+all	: 66%
+load	: 100%
+store	: 50%
+mul	= NA (no mul SSE or AVX instructions)
+add_sub	= NA (no add_sub SSE or AVX instructions)
+other	= NA (no other SSE or AVX instructions)
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 2.00
+FP operations per cycle: 0.00 (GFLOPS at 1 GHz)
+instructions per cycle: 3.50
+bytes loaded per cycle: 16.00 (GB/s at 1 GHz)
+bytes stored per cycle: 16.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 32.00 (GB/s at 1 GHz)
+Cycles if fully vectorized: 2.00
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 14
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 36-36
+Address in the binary: 401858
+
+*******************************************************
+                     Assembly code
+*******************************************************
+MOV	0(%RSI,%RAX,8),%RCX
+MOV	%RCX,0(%RDI,%RAX,8)
+ADD	$0x1,%RAX
+LEA	-0x1(%RAX),%RCX
+CMP	%RDX,%RCX
+JB	401858
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 6
+nb uops			: 6
+loop length		: 21
+used xmm registers	: 0
+used ymm registers	: 0
+
+
+No FP arithmetical operations
+
+Bytes loaded: 8
+Bytes stored: 8
+Arith. intensity (FLOP / ld+st bytes): 0.00
+
+Unroll factor: 1
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.67	1.33	1.00	1.00	1.00	2.00	
+cycles	1.67	1.33	1.00	1.00	1.00	2.00	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+No SSE or AVX instructions
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 2.00
+FP operations per cycle: 0.00 (GFLOPS at 1 GHz)
+instructions per cycle: 3.00
+bytes loaded per cycle: 4.00 (GB/s at 1 GHz)
+bytes stored per cycle: 4.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 8.00 (GB/s at 1 GHz)
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 17
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 34-34
+Address in the binary: 4015e8
+
+*******************************************************
+                     Assembly code
+*******************************************************
+MOV	0(%R8,%RAX,8),%RSI
+MOV	%RSI,0(%RDI,%RAX,8)
+ADD	$0x1,%RAX
+CMP	%RAX,%RBX
+JGE	4015e8
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 5
+nb uops			: 5
+loop length		: 17
+used xmm registers	: 0
+used ymm registers	: 0
+
+
+No FP arithmetical operations
+
+Bytes loaded: 8
+Bytes stored: 8
+Arith. intensity (FLOP / ld+st bytes): 0.00
+
+Unroll factor: 1
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.00	1.00	1.00	1.00	1.00	1.00	
+cycles	1.00	1.00	1.00	1.00	1.00	1.00	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+No SSE or AVX instructions
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 1.00
+FP operations per cycle: 0.00 (GFLOPS at 1 GHz)
+instructions per cycle: 5.00
+bytes loaded per cycle: 8.00 (GB/s at 1 GHz)
+bytes stored per cycle: 8.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 16.00 (GB/s at 1 GHz)
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 18
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 34-34
+Address in the binary: 4015b0
+
+*******************************************************
+                     Assembly code
+*******************************************************
+VMOVUPD	0(%RDX,%RAX,1),%XMM0
+ADD	$0x1,%RSI
+VINSERTF128	$0x1,0x10(%RDX,%RAX,1),%YMM0,%YMM0
+VMOVUPD	%XMM0,0(%RCX,%RAX,1)
+VEXTRACTF128	$0x1,%YMM0,0x10(%RCX,%RAX,1)
+ADD	$0x20,%RAX
+CMP	%RSI,%R9
+JA	4015b0
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 8
+nb uops			: 10
+loop length		: 39
+used xmm registers	: 1
+used ymm registers	: 1
+
+Pattern: PD-XMM
+nb instructions:
+PD-XMM	2
+
+No FP arithmetical operations
+
+Bytes loaded: 32
+Bytes stored: 32
+Arith. intensity (FLOP / ld+st bytes): 0.00
+
+Unroll factor: 4
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	1.67	1.33	2.00	2.00	2.00	2.00	
+cycles	1.67	1.33	2.00	2.00	2.00	2.00	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+all	: 50%
+load	: 50%
+store	: 50%
+mul	= NA (no mul SSE or AVX instructions)
+add_sub	= NA (no add_sub SSE or AVX instructions)
+other	: 0%
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 2.00
+FP operations per cycle: 0.00 (GFLOPS at 1 GHz)
+instructions per cycle: 4.00
+bytes loaded per cycle: 16.00 (GB/s at 1 GHz)
+bytes stored per cycle: 16.00 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 32.00 (GB/s at 1 GHz)
+Cycles if fully vectorized: 2.00
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 20
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 26-28
+Address in the binary: 401380
+
+*******************************************************
+                     Assembly code
+*******************************************************
+VCVTSI2SD	%ESI,%XMM0,%XMM0
+ADD	$0x1,%ESI
+VCVTSI2SD	%ECX,%XMM1,%XMM1
+ADD	$0x1,%ECX
+VMULSD	%XMM0,%XMM0,%XMM0
+VMULSD	%XMM7,%XMM1,%XMM1
+VMULSD	%XMM6,%XMM0,%XMM0
+VSUBSD	%XMM0,%XMM1,%XMM0
+VMOVSD	%XMM0,0(%RAX,%RDX,1)
+ADD	$0x8,%RDX
+CMP	%R8,%RDX
+JNE	401380
+
+*******************************************************
+                General loop properties
+*******************************************************
+nb instructions		: 12
+nb uops			: 14
+loop length		: 44
+used xmm registers	: 4
+used ymm registers	: 0
+
+Pattern: SD
+nb instructions:
+SD	7
+
+nb FP arithmetical operations:
+add-sub	1
+mul	3
+
+Ratio ADD-SUB/MUL (instructions): 0.33
+Bytes loaded: 0
+Bytes stored: 8
+Arith. intensity (FLOP / ld+st bytes): 0.50
+
+Unroll factor: 1 or NA
+
+FIT IN UOP CACHE
+
+*******************************************************
+                       Dispatch
+*******************************************************
+	P0	P1	P2	P3	P4	P5
+uops	5.00	4.00	0.50	0.50	1.00	4.00	
+cycles	5.00	4.00	0.50	0.50	1.00	4.00	
+
+*******************************************************
+                 Vectorization ratios
+*******************************************************
+all	: 0%
+load	= NA (no load SSE or AVX instructions)
+store	: 0%
+mul	: 0%
+add_sub	: 0%
+other	: 0%
+
+*******************************************************
+                   If all data in L1
+*******************************************************
+cycles: 5.00
+FP operations per cycle: 0.80 (GFLOPS at 1 GHz)
+instructions per cycle: 2.40
+bytes loaded per cycle: 0.00 (GB/s at 1 GHz)
+bytes stored per cycle: 1.60 (GB/s at 1 GHz)
+bytes loaded or stored per cycle: 1.60 (GB/s at 1 GHz)
+Cycles if fully vectorized: 3.17
+Cycles executing div or sqrt instructions: NA
+*******************************************************
+                          End
+*******************************************************
+*******************************************************
+                  Processing loop 21
+*******************************************************
+Function: run_
+Source file: /home/scemama/SO_matmul/main_loop.f90
+Source line: 28-28
+Address in the binary: 4012dc
+INVALID ANALYSIS (less or more than one block)
+
+Loop ending at source line 36 is unrolled by 4
+Loop ending at source line 36 regroups:
+Loop with MAQAO ID 12 and with source line range 36-36
+Loop with MAQAO ID 13 and with source line range 36-36
+Loop with MAQAO ID 14 and with source line range 36-36
+Loop ending at source line 34 is unrolled by 4
+Loop ending at source line 34 regroups:
+Loop with MAQAO ID 17 and with source line range 34-34
+Loop with MAQAO ID 18 and with source line range 34-34
+Loop ending at source line 28 is not unrolled or unrolled with no peel/tail code
+Loop ending at source line 43 is unrolled by 4
+Loop ending at source line 43 regroups:
+Loop with MAQAO ID 7 and with source line range 42-43
+Loop with MAQAO ID 8 and with source line range 43-43
+Loop with MAQAO ID 9 and with source line range 5-43
