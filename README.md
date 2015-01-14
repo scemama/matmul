@@ -31,23 +31,24 @@ power management:
 
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
-- [Analysis of 2x2 matrix products in Fortran](#)
-	- [Matmul](#)
-		- [Gfortran](#)
-		- [Ifort](#)
-		- [Putting explicitly the bounds in the matrix product](#)
-		- [Ifort](#)
-	- [Using naively loops instead of matmul](#)
-		- [Gfortran](#)
-		- [Ifort](#)
-	- [Putting explicitly the bounds in the loops](#)
-		- [Gfortran](#)
-		- [Ifort](#)
-	- [Removing the loops](#)
-		- [Gfortran](#)
-		- [Ifort](#)
-			- [Asking the compiler not the vectorize the loop](#)
-- [Summary](#)
+- [Analysis of 2x2 matrix products in Fortran](#analysis-of-2x2-matrix-products-in-fortran)
+	- [Matmul](#matmul)
+		- [Gfortran](#gfortran)
+		- [Ifort](#ifort)
+	- [Putting explicitly the bounds in the matrix product](#putting-explicitly-the-bounds-in-the-matrix-product)
+ 		- [Gfortran](#gfortran-1)
+		- [Ifort](#ifort-1)
+	- [Using naively loops instead of matmul](#using-naively-loops-instead-of-matmul)
+		- [Gfortran](#gfortran-2)
+		- [Ifort](#ifort-2)
+	- [Putting explicitly the bounds in the loops](#putting-explicitly-the-bounds-in-the-loops)
+		- [Gfortran](#gfortran-3)
+		- [Ifort](#ifort-3)
+	- [Removing the loops](#removing-the-loops)
+		- [Gfortran](#gfortran-4)
+		- [Ifort](#ifort-4)
+			- [Asking the compiler not the vectorize the loop](#asking-the-compiler-not-the-vectorize-the-loop)
+- [Summary](#summary)
  
 
 ## Matmul
@@ -150,7 +151,7 @@ two times).
 For this particular example, this is less efficient than `O2`.
 
 
-### Putting explicitly the bounds in the matrix product
+## Putting explicitly the bounds in matmul
 
 ```diff
 $ diff main_matmul.f90 main_matmul_bounds.f90 
@@ -159,6 +160,8 @@ $ diff main_matmul.f90 main_matmul_bounds.f90
 ---
 >     C(1:2,1:2,k) = matmul(A(1:2,1:2,k),B(1:2,1:2,k))
 ```
+
+### Gfortran
 
 ```
 $ gfortran -O2 -mavx -g main_matmul_bounds.f90
